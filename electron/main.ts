@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, Menu } from 'electron'
 import path from 'node:path'
 
 const ipc = ipcMain
@@ -37,7 +37,6 @@ function createWindow() {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js'),
     },
-    
   })
   
   // Test active push message to Renderer-process.
@@ -45,22 +44,21 @@ function createWindow() {
     win?.webContents.send('main-process-message', (new Date).toLocaleString())
   })
       //! Close custom win-menu
-      ipc.on('closeApp', ()=> {
-        console.log('custom-close');
-        
-      })
-      
-      if (VITE_DEV_SERVER_URL) {
-        win.loadURL(VITE_DEV_SERVER_URL)
-      } else {
-        win.loadFile(path.join(process.env.DIST, 'index.html'))
-      }
-    }
-        
-        app.on('window-all-closed', () => {
-          win = null
-        })
-        
+  Menu.setApplicationMenu(null)
+  ipc.on('closeApp', ()=> {
+    console.log('custom-close');
+  })
+  
+  if (VITE_DEV_SERVER_URL) {
+    win.loadURL(VITE_DEV_SERVER_URL)
+  } else {
+    win.loadFile(path.join(process.env.DIST, 'index.html'))
+  }
+}
+    
+app.on('window-all-closed', () => {
+  win = null
+})
 
 
 app.whenReady().then(createWindow)
