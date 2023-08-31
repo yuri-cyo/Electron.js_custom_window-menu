@@ -1,7 +1,8 @@
-import { app, BrowserWindow, ipcMain, Menu } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import path from 'node:path'
 
 const ipc = ipcMain
+
 
 // The built directory structure
 //
@@ -26,8 +27,8 @@ function createWindow() {
     height: 800,
     icon: path.join(process.env.PUBLIC, '../logo.svg'),
 
-    minWidth: 320,
-    minHeight: 180,
+    minWidth: 480,
+    minHeight: 320,
     frame: false,
     // icon: '/path/to/logo.svg',
     // icon: path.join(__dirname, '/icon.svg',),
@@ -44,7 +45,7 @@ function createWindow() {
     win?.webContents.send('main-process-message', (new Date).toLocaleString())
   })
       //! Close custom win-menu
-  Menu.setApplicationMenu(null)
+  // Menu.setApplicationMenu(null)
   ipc.on('closeApp', ()=> {
     console.log('custom-close');
   })

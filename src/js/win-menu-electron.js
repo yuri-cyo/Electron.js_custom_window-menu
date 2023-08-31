@@ -1,15 +1,17 @@
-// import { ipcRenderer } from 'electron';
-const { ipcRenderer } = require('electron')
-const ipc = ipcRenderer;
+const { ipcRenderer } = require('electron');
 
-// const btnWinClose = document.querySelector('#btnWinClose')
-console.log('qweqwe');
+let btnWinMin = document.querySelector('#btnWinMin');
+let btnWinMax = document.querySelector('#btnWinMax');
+let btnWinClose = document.querySelector('#btnWinClose');
 
-btnWinClose.addEventListener('click', ()=> {
-    console.log('cl');
-    ipc.send('closeApp')
-})
+btnWinMin.addEventListener('click', () => {
+    ipcRenderer.send('minimize-window');
+});
 
-// const { app, Menu } = require('electron')
+btnWinMax.addEventListener('click', () => {
+    ipcRenderer.send('maximize-window');
+});
 
-// const isMac = process.platform ==='darwin'
+btnWinClose.addEventListener('click', () => {
+    ipcRenderer.send('close-window');
+});
