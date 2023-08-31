@@ -1,5 +1,7 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import path from 'node:path'
+
+const ipc = ipcMain
 
 // The built directory structure
 //
@@ -23,19 +25,30 @@ function createWindow() {
     width: 1280,
     height: 800,
     icon: path.join(process.env.PUBLIC, '../logo.svg'),
+
+    minWidth: 320,
+    minHeight: 180,
+    frame: false,
     // icon: '/path/to/logo.svg',
     // icon: path.join(__dirname, '/icon.svg',),
     // icon: path.join(__dirname, 'assets', 'icon', 'icon.svg'),
     webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: true,
       preload: path.join(__dirname, 'preload.js'),
     },
+    
   })
   
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', (new Date).toLocaleString())
   })
-      
+      //! Close custom win-menu
+      ipc.on('closeApp', ()=> {
+        console.log('custom-close');
+        
+      })
       
       if (VITE_DEV_SERVER_URL) {
         win.loadURL(VITE_DEV_SERVER_URL)

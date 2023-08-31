@@ -1,8 +1,10 @@
 $bg-win-menu: #3c3f41;
 $color-win-icon-close: #c42b1c;
 
+$h-win-menu: 40px;
 $size-win-btns-icon: 12px;
 $pd-win-btns: 14px 18px;
+$w-win-logo: 28px;
 
 [class^="btn-win"] {
     border: none;
@@ -13,24 +15,59 @@ $pd-win-btns: 14px 18px;
 
 .window-menu {
     display: flex;
+    flex: 1 1 auto;
     justify-content: space-between;
     align-items: center;
     background-color: $bg-win-menu;
-    width: 100vw;
+    max-width: 100%;
+    // height: $h-win-menu;
     border-bottom: 1px solid #1e1f22;
+    -webkit-user-select: none;
     
     &__content {
         display: flex;
         flex-direction: row;
         width: 20%;
-        background: linear-gradient(90deg, rgba(255, 211, 0, 0.15) 0%, rgba(255, 211, 0, 0.25) 36.67%, rgba(255, 211, 0, 0.00) 100%);
+        background: linear-gradient(90deg, rgba(245, 97, 94, 0.204) 0%, rgba(245, 97, 94, 0.234), rgba(255, 211, 0, 0.00) 100%);
+    }
+    &__drag-bar {
+        display: flex;
+        width: 100%;
+        justify-content:center;
+        align-items: center;
+        height: $h-win-menu;
+        // padding: auto;
+        padding: 0 15px;
+        // display: none;
+        -webkit-app-region: drag;
+        h1 {
+            // display: inline-block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 1rem;
+            font-weight: 400;
+            max-width: 35vw;
+            // display: flex;
+            // flex: 1 1 auto;
+            
+        }
     }
     &__btns-win-ctrl {
         display: flex;
         flex-direction: row;
-        margin-left: 20px;
         color: #ffff;
         // gap: 18px;
+    }
+}
+
+.win-logo{
+    padding: 4px 4px 4px 8px !important;
+    display: flex;
+    align-items: center;
+    img {
+        height: $w-win-logo;
+        width: $w-win-logo;
     }
 }
 
@@ -53,8 +90,8 @@ $pd-win-btns: 14px 18px;
     }
     &__btn-close {
         &:hover {
-            transition: all 0.1s ease 0s;
-            background-color: $color-win-icon-close;
+            transition: all 0.1s ease 0s; 
+            background-color: $color-win-icon-close !important;
         }
     }
 }

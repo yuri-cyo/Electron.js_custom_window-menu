@@ -18,5 +18,8 @@
 </script>
 
 <style lang="scss" scoped>
+div {
+  padding: 20px;
+}
 
 </style>

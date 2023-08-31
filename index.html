@@ -12,9 +12,15 @@
   <body>
     <div class="window-menu">
       <div class="window-menu__content">
+        <div class="btn-win win-logo">
+          <img class="btn-win__icon" src="./src/assets/icon/logo.svg" alt="">
+        </div>
         <button class="btn-win btn-win-menu" id="btn-win-menu">
           <img class="btn-win__icon" src="./src/assets/icon/icon_menu.svg" alt="">
         </button>
+      </div>
+      <div class="window-menu__drag-bar">
+        <h1>Tittle Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum dolorem labore architecto cum. Itaque ipsam rem repellendus nisi eos sint iusto exercitationem unde, id, harum aut eveniet porro accusamus quos!</h1>
       </div>
       <div class="window-menu__btns-win-ctrl">
         <button class="btn-win-ctrl" id="btn-win-ctrl-minimize">
@@ -23,12 +29,13 @@
         <button class="btn-win-ctrl" id="btn-win-ctrl-maximize">
           <img class="btn-win-ctrl__icon" src="./src/assets/icon/icon_maximize.svg" alt="">
         </button>
-        <button class="btn-win-ctrl btn-win-ctrl__btn-close" id="btn-win-ctrl-close">
+        <button class="btn-win-ctrl btn-win-ctrl__btn-close" id="btnWinClose">
           <img class="btn-win-ctrl__icon" src="./src/assets/icon/icon_close.svg" alt="">
         </button>
       </div>
     </div>
     <div id="app"></div>
+    <script type="module" src="/src/js/win-menu-electron.js"></script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
